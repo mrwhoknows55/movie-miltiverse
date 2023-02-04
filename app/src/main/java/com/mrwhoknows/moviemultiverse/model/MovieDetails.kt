@@ -16,4 +16,10 @@ data class MovieDetails(
     val languages: List<String>,
     val voteAvg: Double,
     val voteCount: Long
-)
+) {
+    companion object {
+        fun getEmptyObj() = MovieDetails(
+            "", "", "", "", 0, "", 0, 0, "", "", "", emptyList(), emptyList(), 0.0, 0
+        )
+    }
+}

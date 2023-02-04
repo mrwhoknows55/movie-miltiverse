@@ -6,6 +6,7 @@ import com.mrwhoknows.moviemultiverse.net.dto.MovieCreditsResponse
 import com.mrwhoknows.moviemultiverse.net.dto.toMovieDetailsModel
 import com.mrwhoknows.moviemultiverse.util.Constants
 import kotlinx.coroutines.CoroutineDispatcher
+import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import javax.inject.Inject
 

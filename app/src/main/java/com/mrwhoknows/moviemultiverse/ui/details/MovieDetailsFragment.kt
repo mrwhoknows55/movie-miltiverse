@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.size.Scale
+import com.facebook.shimmer.ShimmerFrameLayout
 import com.google.android.material.snackbar.Snackbar
 import com.mrwhoknows.moviemultiverse.databinding.FragmentMovieDetailsBinding
 import com.mrwhoknows.moviemultiverse.model.Credits
@@ -68,7 +69,7 @@ class MovieDetailsFragment : Fragment() {
                 }
                 is Resource.Loading -> {
                     Timber.d("castsList: loading")
-                    updateLoadingUI(true)
+                    updateCastLoadingUI(true)
                 }
                 is Resource.Success -> {
                     Timber.d("castsList: ${resource.data}")
@@ -86,7 +87,7 @@ class MovieDetailsFragment : Fragment() {
                 }
                 is Resource.Loading -> {
                     Timber.d("crewList: loading")
-                    updateLoadingUI(true)
+                    updateCrewLoadingUI(true)
                 }
                 is Resource.Success -> {
                     Timber.d("crewList: ${resource.data}")
@@ -96,6 +97,43 @@ class MovieDetailsFragment : Fragment() {
                 }
             }
         }
+    }
+
+    private fun updateShimmerState(
+        isLoading: Boolean,
+        list: RecyclerView,
+        dummyList: View,
+        shimmerLayout: ShimmerFrameLayout
+    ) {
+        if (isLoading) {
+            list.apply {
+                startFadeOut()
+                visibility = View.GONE
+            }
+            dummyList.apply {
+                startFadeIn()
+                visibility = View.VISIBLE
+            }
+            shimmerLayout.showShimmer(true)
+        } else {
+            dummyList.apply {
+                startFadeOut()
+                visibility = View.GONE
+            }
+            list.apply {
+                startFadeIn()
+                visibility = View.VISIBLE
+            }
+            shimmerLayout.hideShimmer()
+        }
+    }
+
+    private fun updateCrewLoadingUI(isLoading: Boolean) = binding.apply {
+        updateShimmerState(isLoading, rvCrewList, rvCrewDummyList.root, rvCrewListWrapper)
+    }
+
+    private fun updateCastLoadingUI(isLoading: Boolean) = binding.apply {
+        updateShimmerState(isLoading, rvCastList, rvCastDummyList.root, rvCastListWrapper)
     }
 
     private fun setupRecyclerViews() = binding.run {
@@ -110,12 +148,12 @@ class MovieDetailsFragment : Fragment() {
     }
 
     private fun bindCastListUI(credits: List<Credits>) {
-        updateLoadingUI(false)
+        updateCastLoadingUI(false)
         castsAdapter.submitList(credits)
     }
 
     private fun bindCrewListUI(credits: List<Credits>) {
-        updateLoadingUI(false)
+        updateCrewLoadingUI(false)
         crewAdapter.submitList(credits)
     }
 
@@ -137,13 +175,25 @@ class MovieDetailsFragment : Fragment() {
 
     private fun updateLoadingUI(isLoading: Boolean) = binding.run {
         if (isLoading) {
-            parent.visibility = View.GONE
-            shimmerLayout.root.visibility = View.VISIBLE
-            shimmerLayout.parent.showShimmer(true)
+            parent.apply {
+                startFadeOut()
+                visibility = View.GONE
+            }
+            shimmerLayout.apply {
+                root.startFadeIn()
+                root.visibility = View.VISIBLE
+                parent.showShimmer(true)
+            }
         } else {
-            shimmerLayout.parent.showShimmer(false)
-            shimmerLayout.root.visibility = View.GONE
-            parent.visibility = View.VISIBLE
+            shimmerLayout.apply {
+                root.startFadeOut()
+                root.visibility = View.GONE
+                parent.showShimmer(false)
+            }
+            parent.apply {
+                startFadeIn()
+                visibility = View.VISIBLE
+            }
         }
     }
 
@@ -154,4 +204,11 @@ class MovieDetailsFragment : Fragment() {
         }
     }
 
+    private fun View.startFadeIn(duration: Long = 1000) {
+        animate().alpha(1f).setDuration(duration).setStartDelay(duration / 100).start()
+    }
+
+    private fun View.startFadeOut(duration: Long = 1000) {
+        animate().alpha(0f).setDuration(duration).setStartDelay(duration / 100).start()
+    }
 }

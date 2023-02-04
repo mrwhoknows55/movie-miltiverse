@@ -143,15 +143,30 @@
                     app:layout_constraintStart_toStartOf="@+id/tvOverview"
                     app:layout_constraintTop_toBottomOf="@+id/separatorLine1" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCastList"
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/rvCastListWrapper"
                     android:layout_width="0dp"
                     android:layout_height="230dp"
                     android:layout_marginTop="4dp"
-                    android:nestedScrollingEnabled="true"
                     app:layout_constraintEnd_toEndOf="@+id/tvOverview"
                     app:layout_constraintStart_toStartOf="@+id/tvCastLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCastLabel" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCastLabel">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCastList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="true"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <include
+                        android:id="@+id/rvCastDummyList"
+                        layout="@layout/shimmer_credits_list"
+                        android:visibility="visible"
+                        tools:visibility="gone" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <include
                     android:id="@+id/separatorLine2"
@@ -161,7 +176,7 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvCastList" />
+                    app:layout_constraintTop_toBottomOf="@+id/rvCastListWrapper" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvCrewLabel"
@@ -172,19 +187,33 @@
                     android:textColor="@color/text_color"
                     android:textFontWeight="700"
                     android:textSize="18sp"
-                    app:layout_constraintStart_toStartOf="@+id/rvCastList"
+                    app:layout_constraintStart_toStartOf="@+id/rvCastListWrapper"
                     app:layout_constraintTop_toBottomOf="@+id/separatorLine2" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/rvCrewList"
+                <com.facebook.shimmer.ShimmerFrameLayout
+                    android:id="@+id/rvCrewListWrapper"
                     android:layout_width="0dp"
                     android:layout_height="230dp"
                     android:layout_marginTop="8dp"
-                    android:nestedScrollingEnabled="true"
-                    app:layout_constraintEnd_toEndOf="@+id/rvCastList"
+                    app:layout_constraintEnd_toEndOf="@+id/rvCastListWrapper"
                     app:layout_constraintStart_toStartOf="@+id/tvCrewLabel"
-                    app:layout_constraintTop_toBottomOf="@+id/tvCrewLabel"
-                    tools:listitem="" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvCrewLabel">
+
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/rvCrewList"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:nestedScrollingEnabled="true"
+                        android:visibility="gone"
+                        tools:visibility="visible" />
+
+                    <include
+                        android:id="@+id/rvCrewDummyList"
+                        layout="@layout/shimmer_credits_list"
+                        android:visibility="visible"
+                        tools:visibility="gone" />
+
+                </com.facebook.shimmer.ShimmerFrameLayout>
 
                 <include
                     android:id="@+id/separatorLine3"
@@ -194,7 +223,7 @@
                     android:layout_marginTop="8dp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/rvCrewList" />
+                    app:layout_constraintTop_toBottomOf="@+id/rvCrewListWrapper" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.core.widget.NestedScrollView>
 
