@@ -8,7 +8,7 @@ import retrofit2.http.Query
 
 interface MovieApiService {
 
-    @GET("/{movieId}")
+    @GET("/3/movie/{movieId}")
     suspend fun getMovieDetails(
         @Path("movieId") movieId: Int,
         @Query("api_key") apiKey: String,
@@ -16,7 +16,7 @@ interface MovieApiService {
         @Query("page") page: Int = 1
     ): MovieDetailsResponse
 
-    @GET("/{movieId}/credits")
+    @GET("/3/movie/{movieId}/credits")
     suspend fun getMovieCredits(
         @Path("movieId") movieId: Int,
         @Query("api_key") apiKey: String,

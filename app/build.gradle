@@ -18,6 +18,14 @@ android {
         versionName "1.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+
+        def localProps = new Properties()
+        localProps.load(new FileInputStream(new File('local.properties')))
+        buildConfigField "String", "TMDB_API_KEY", localProps.getProperty('TMDB_API_KEY')
+        buildConfigField "String", "API_BASE_URL", "\"https://api.themoviedb.org/\""
+        buildConfigField "String", "POSTER_IMG_BASE_URL", "\"https://image.tmdb.org/t/p/w780\""
+        buildConfigField "String", "PROFILE_IMG_BASE_URL", "\"https://image.tmdb.org/t/p/w185\""
+        buildConfigField "String", "BACKDROP_IMG_BASE_URL", "\"https://image.tmdb.org/t/p/w1280\""
     }
 
     buildTypes {

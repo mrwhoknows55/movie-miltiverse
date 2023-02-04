@@ -3,6 +3,8 @@ package com.mrwhoknows.moviemultiverse.net.dto
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import com.mrwhoknows.moviemultiverse.model.MovieDetails
+import com.mrwhoknows.moviemultiverse.util.Constants
 
 @Keep
 data class MovieDetailsResponse(
@@ -107,3 +109,21 @@ data class MovieDetailsResponse(
         val name: String
     )
 }
+
+fun MovieDetailsResponse.toMovieDetailsModel() = MovieDetails(
+    backdropLink = "${Constants.BACKDROP_IMG_BASE_URL}$backdropPath",
+    posterLink = "${Constants.POSTER_IMG_BASE_URL}$posterPath",
+    title = title,
+    imdbId = imdbId,
+    id = id,
+    overview = overview,
+    budget = budget,
+    revenue = revenue,
+    releaseDate = releaseDate,
+    homepageUrl = homepage,
+    tagLine = tagline,
+    genres = genres.map { it.name },
+    languages = spokenLanguages.map { it.englishName },
+    voteAvg = "%.1f".format(voteAverage).toDouble(),
+    voteCount = voteCount,
+)

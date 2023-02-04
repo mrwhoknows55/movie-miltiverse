@@ -3,6 +3,8 @@ package com.mrwhoknows.moviemultiverse.net.dto
 
 import androidx.annotation.Keep
 import com.google.gson.annotations.SerializedName
+import com.mrwhoknows.moviemultiverse.model.Credits
+import com.mrwhoknows.moviemultiverse.util.Constants
 
 @Keep
 data class MovieCreditsResponse(
@@ -41,3 +43,21 @@ data class MovieCreditsResponse(
         @SerializedName("profile_path") val profilePath: String
     )
 }
+
+fun MovieCreditsResponse.Crew.toCreditsModel() = Credits(
+    name = name,
+    id = id,
+    gender = gender,
+    profileImgUrl = "${Constants.PROFILE_IMG_BASE_URL}$profilePath",
+    department = knownForDepartment,
+    characterOrJobName = job
+)
+
+fun MovieCreditsResponse.Cast.toCreditsModel() = Credits(
+    name = name,
+    id = id,
+    gender = gender,
+    profileImgUrl = "${Constants.PROFILE_IMG_BASE_URL}$profilePath",
+    department = knownForDepartment,
+    characterOrJobName = character
+)
