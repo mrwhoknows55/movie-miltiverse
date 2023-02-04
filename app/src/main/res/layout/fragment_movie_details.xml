@@ -1,217 +1,231 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <androidx.core.widget.NestedScrollView
-        android:id="@+id/parentScrollView"
+    <RelativeLayout
+        android:id="@+id/parent"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_above="@+id/cardBookTickets">
+        android:visibility="gone"
+        tools:visibility="visible">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <androidx.core.widget.NestedScrollView
+            android:id="@+id/parentScrollView"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:layout_above="@+id/cardBookTickets">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvTitle"
-                style="@style/TextAppearance.AppCompat.Title"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:ellipsize="end"
-                android:gravity="center_vertical"
-                android:maxLines="2"
-                android:padding="2dp"
-                android:paddingVertical="4dp"
-                android:textFontWeight="500"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                tools:text="Dr. Strange Multiverse Of Madness" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-            <androidx.cardview.widget.CardView
-                android:id="@+id/backdropCard"
-                android:layout_width="0dp"
-                android:layout_height="0dp"
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvTitle"
+                    style="@style/TextAppearance.AppCompat.Title"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:ellipsize="end"
+                    android:gravity="center_vertical"
+                    android:maxLines="2"
+                    android:padding="2dp"
+                    android:paddingVertical="4dp"
+                    android:textFontWeight="500"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    tools:text="Dr. Strange Multiverse Of Madness" />
 
-                android:layout_marginTop="16dp"
-                app:cardCornerRadius="12dp"
-                app:layout_constraintDimensionRatio="16:9"
-                app:layout_constraintEnd_toEndOf="@+id/tvTitle"
-                app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/backdropCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+
+                    android:layout_marginTop="16dp"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="@+id/tvTitle"
+                    app:layout_constraintStart_toStartOf="@+id/tvTitle"
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+
+                    <androidx.appcompat.widget.AppCompatImageView
+                        android:id="@+id/ivBackdrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:scaleType="centerCrop"
+                        tools:src="@tools:sample/backgrounds/scenic" />
+
+                </androidx.cardview.widget.CardView>
 
                 <androidx.appcompat.widget.AppCompatImageView
-                    android:id="@+id/ivBackdrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
-                    tools:src="@tools:sample/backgrounds/scenic" />
+                    android:id="@+id/ivStar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:minWidth="20dp"
+                    android:padding="2dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintStart_toStartOf="@+id/backdropCard"
+                    app:layout_constraintTop_toBottomOf="@+id/backdropCard"
+                    app:srcCompat="@drawable/ic_star_filled" />
 
-            </androidx.cardview.widget.CardView>
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:maxLines="1"
+                    android:padding="2dp"
+                    android:textSize="16sp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivStar"
+                    app:layout_constraintStart_toEndOf="@+id/ivStar"
+                    app:layout_constraintTop_toTopOf="@+id/ivStar"
+                    tools:text="9.0/10 (200 votes)" />
 
-            <androidx.appcompat.widget.AppCompatImageView
-                android:id="@+id/ivStar"
-                android:layout_width="wrap_content"
-                android:layout_height="0dp"
-                android:layout_marginTop="8dp"
-                android:minWidth="20dp"
-                android:padding="2dp"
-                app:layout_constraintDimensionRatio="1"
-                app:layout_constraintStart_toStartOf="@+id/backdropCard"
-                app:layout_constraintTop_toBottomOf="@+id/backdropCard"
-                app:srcCompat="@drawable/ic_star_filled" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipGenres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:textSize="12sp"
+                    app:chipCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/ivStar"
+                    app:layout_constraintTop_toBottomOf="@+id/ivStar"
+                    tools:text="Action, Thriller +1" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvRating"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center_vertical"
-                android:maxLines="1"
-                android:padding="2dp"
-                android:textSize="16sp"
-                app:layout_constraintBottom_toBottomOf="@+id/ivStar"
-                app:layout_constraintStart_toEndOf="@+id/ivStar"
-                app:layout_constraintTop_toTopOf="@+id/ivStar"
-                tools:text="9.0/10 (200 votes)" />
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chipLanguages"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:textSize="12sp"
+                    app:chipCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/chipGenres"
+                    app:layout_constraintStart_toEndOf="@+id/chipGenres"
+                    app:layout_constraintTop_toTopOf="@+id/chipGenres"
+                    tools:text="English, Hindi +1" />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipGenres"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="4dp"
-                android:textSize="12sp"
-                app:chipCornerRadius="8dp"
-                app:layout_constraintStart_toStartOf="@+id/ivStar"
-                app:layout_constraintTop_toBottomOf="@+id/ivStar"
-                tools:text="Action, Thriller +1" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvOverview"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/backdropCard"
+                    app:layout_constraintStart_toStartOf="@+id/chipGenres"
+                    app:layout_constraintTop_toBottomOf="@+id/chipGenres"
+                    tools:text="Doctor Strange, with the help of mystical allies both old and new, traverses the mind-bending and dangerous alternate realities of the Multiverse to confront a mysterious new adversary." />
 
-            <com.google.android.material.chip.Chip
-                android:id="@+id/chipLanguages"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="8dp"
-                android:textSize="12sp"
-                app:chipCornerRadius="8dp"
-                app:layout_constraintBottom_toBottomOf="@+id/chipGenres"
-                app:layout_constraintStart_toEndOf="@+id/chipGenres"
-                app:layout_constraintTop_toTopOf="@+id/chipGenres"
-                tools:text="English, Hindi +1" />
+                <include
+                    android:id="@+id/separatorLine1"
+                    layout="@layout/separator_line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvOverview"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="@+id/backdropCard"
-                app:layout_constraintStart_toStartOf="@+id/chipGenres"
-                app:layout_constraintTop_toBottomOf="@+id/chipGenres"
-                tools:text="Doctor Strange, with the help of mystical allies both old and new, traverses the mind-bending and dangerous alternate realities of the Multiverse to confront a mysterious new adversary." />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCastLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/cast"
+                    android:textColor="@color/text_color"
+                    android:textFontWeight="700"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/tvOverview"
+                    app:layout_constraintTop_toBottomOf="@+id/separatorLine1" />
 
-            <include
-                android:id="@+id/separatorLine1"
-                layout="@layout/separator_line"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvOverview" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCastList"
+                    android:layout_width="0dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="4dp"
+                    android:nestedScrollingEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@+id/tvOverview"
+                    app:layout_constraintStart_toStartOf="@+id/tvCastLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCastLabel" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCastLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/cast"
-                android:textColor="@color/text_color"
-                android:textFontWeight="700"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/tvOverview"
-                app:layout_constraintTop_toBottomOf="@+id/separatorLine1" />
+                <include
+                    android:id="@+id/separatorLine2"
+                    layout="@layout/separator_line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvCastList" />
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCastList"
-                android:layout_width="0dp"
-                android:layout_height="230dp"
-                android:layout_marginTop="4dp"
-                android:nestedScrollingEnabled="true"
-                app:layout_constraintEnd_toEndOf="@+id/tvOverview"
-                app:layout_constraintStart_toStartOf="@+id/tvCastLabel"
-                app:layout_constraintTop_toBottomOf="@+id/tvCastLabel" />
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvCrewLabel"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:text="@string/crew"
+                    android:textColor="@color/text_color"
+                    android:textFontWeight="700"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/rvCastList"
+                    app:layout_constraintTop_toBottomOf="@+id/separatorLine2" />
 
-            <include
-                android:id="@+id/separatorLine2"
-                layout="@layout/separator_line"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvCastList" />
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvCrewList"
+                    android:layout_width="0dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="8dp"
+                    android:nestedScrollingEnabled="true"
+                    app:layout_constraintEnd_toEndOf="@+id/rvCastList"
+                    app:layout_constraintStart_toStartOf="@+id/tvCrewLabel"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCrewLabel"
+                    tools:listitem="" />
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/tvCrewLabel"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                android:text="@string/crew"
-                android:textColor="@color/text_color"
-                android:textFontWeight="700"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="@+id/rvCastList"
-                app:layout_constraintTop_toBottomOf="@+id/separatorLine2" />
+                <include
+                    android:id="@+id/separatorLine3"
+                    layout="@layout/separator_line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvCrewList" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
 
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvCrewList"
-                android:layout_width="0dp"
-                android:layout_height="230dp"
-                android:layout_marginTop="8dp"
-                android:nestedScrollingEnabled="true"
-                app:layout_constraintEnd_toEndOf="@+id/rvCastList"
-                app:layout_constraintStart_toStartOf="@+id/tvCrewLabel"
-                app:layout_constraintTop_toBottomOf="@+id/tvCrewLabel"
-                tools:listitem="" />
-
-            <include
-                android:id="@+id/separatorLine3"
-                layout="@layout/separator_line"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/rvCrewList" />
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </androidx.core.widget.NestedScrollView>
-
-    <androidx.cardview.widget.CardView
-        android:id="@+id/cardBookTickets"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:background="@color/purple_500"
-        android:clickable="true"
-        android:focusable="true"
-        app:cardBackgroundColor="@color/purple_500">
-
-        <TextView
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardBookTickets"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:gravity="center"
-            android:paddingVertical="16dp"
-            android:text="@string/book_tickets"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:textSize="18sp" />
-    </androidx.cardview.widget.CardView>
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/purple_500"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/purple_500">
 
-</RelativeLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:paddingVertical="16dp"
+                android:text="@string/book_tickets"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
+
+    </RelativeLayout>
+
+    <include
+        android:id="@+id/shimmerLayout"
+        layout="@layout/shimmer_fragment_movie_details"
+        android:visibility="visible"
+        tools:visibility="gone" />
+</FrameLayout>

@@ -1,0 +1,195 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.facebook.shimmer.ShimmerFrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/parent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:viewBindingIgnore="true">
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_above="@+id/bottomCard"
+            tools:viewBindingIgnore="true">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <View
+                    android:id="@+id/titleShimmer"
+                    android:layout_width="0dp"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="16dp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/shimmerCard"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="16dp"
+                    app:cardBackgroundColor="@color/grey"
+                    app:cardCornerRadius="12dp"
+                    app:layout_constraintDimensionRatio="16:9"
+                    app:layout_constraintEnd_toEndOf="@+id/titleShimmer"
+                    app:layout_constraintStart_toStartOf="@+id/titleShimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/titleShimmer" />
+
+                <androidx.appcompat.widget.AppCompatImageView
+                    android:id="@+id/starShimmer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_marginTop="8dp"
+                    android:minWidth="20dp"
+                    android:padding="2dp"
+                    app:layout_constraintDimensionRatio="1"
+                    app:layout_constraintStart_toStartOf="@+id/shimmerCard"
+                    app:layout_constraintTop_toBottomOf="@+id/shimmerCard"
+                    app:srcCompat="@drawable/ic_star_filled" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/tvRating"
+                    android:layout_width="200dp"
+                    android:layout_height="30dp"
+                    android:background="@color/grey"
+                    app:layout_constraintBottom_toBottomOf="@+id/starShimmer"
+                    app:layout_constraintStart_toEndOf="@+id/starShimmer"
+                    app:layout_constraintTop_toTopOf="@+id/starShimmer" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip1"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    app:chipBackgroundColor="@color/grey"
+                    app:chipCornerRadius="8dp"
+                    app:layout_constraintStart_toStartOf="@+id/starShimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/starShimmer" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/chip2"
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    app:chipBackgroundColor="@color/grey"
+                    app:chipCornerRadius="8dp"
+                    app:layout_constraintBottom_toBottomOf="@+id/chip1"
+                    app:layout_constraintStart_toEndOf="@+id/chip1"
+                    app:layout_constraintTop_toTopOf="@+id/chip1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/descBlock"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/grey"
+                    app:layout_constraintEnd_toEndOf="@+id/shimmerCard"
+                    app:layout_constraintStart_toStartOf="@+id/chip1"
+                    app:layout_constraintTop_toBottomOf="@+id/chip1" />
+
+                <include
+                    android:id="@+id/separatorLine1"
+                    layout="@layout/separator_line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/descBlock" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label1"
+                    android:layout_width="50dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/grey"
+                    app:layout_constraintStart_toStartOf="@+id/descBlock"
+                    app:layout_constraintTop_toBottomOf="@+id/separatorLine1" />
+
+                <include
+                    android:id="@+id/list1"
+                    layout="@layout/shimmer_credits_list"
+                    android:layout_width="0dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="4dp"
+                    app:layout_constraintEnd_toEndOf="@+id/descBlock"
+                    app:layout_constraintStart_toStartOf="@+id/label1"
+                    app:layout_constraintTop_toBottomOf="@+id/label1" />
+
+                <include
+                    android:id="@+id/separatorLine2"
+                    layout="@layout/separator_line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/list1" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/label2"
+                    android:layout_width="50dp"
+                    android:layout_height="20dp"
+                    android:layout_marginTop="8dp"
+                    android:background="@color/grey"
+                    android:textColor="@color/text_color"
+                    android:textSize="18sp"
+                    app:layout_constraintStart_toStartOf="@+id/list1"
+                    app:layout_constraintTop_toBottomOf="@+id/separatorLine2" />
+
+                <include
+                    android:id="@+id/list2"
+                    layout="@layout/shimmer_credits_list"
+                    android:layout_width="0dp"
+                    android:layout_height="230dp"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="@+id/list1"
+                    app:layout_constraintStart_toStartOf="@+id/label2"
+                    app:layout_constraintTop_toBottomOf="@+id/label2" />
+
+                <include
+                    android:id="@+id/separatorLine3"
+                    layout="@layout/separator_line"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/list2" />
+
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/bottomCard"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentBottom="true"
+            android:background="@color/purple_500"
+            android:clickable="true"
+            android:focusable="true"
+            app:cardBackgroundColor="@color/purple_500">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingVertical="16dp"
+                android:textSize="18sp" />
+        </androidx.cardview.widget.CardView>
+    </RelativeLayout>
+
+</com.facebook.shimmer.ShimmerFrameLayout>

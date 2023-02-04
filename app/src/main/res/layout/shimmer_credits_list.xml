@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<HorizontalScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:viewBindingIgnore="true">
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include layout="@layout/shimmer_item_credits_list" />
+
+        <include layout="@layout/shimmer_item_credits_list" />
+
+        <include layout="@layout/shimmer_item_credits_list" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+</HorizontalScrollView>
