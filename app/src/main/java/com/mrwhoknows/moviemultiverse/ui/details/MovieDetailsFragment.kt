@@ -16,6 +16,7 @@ import com.mrwhoknows.moviemultiverse.databinding.FragmentMovieDetailsBinding
 import com.mrwhoknows.moviemultiverse.model.Credits
 import com.mrwhoknows.moviemultiverse.model.MovieDetails
 import com.mrwhoknows.moviemultiverse.util.Resource
+import com.mrwhoknows.moviemultiverse.util.shortSnackbar
 import com.mrwhoknows.moviemultiverse.util.startFadeIn
 import com.mrwhoknows.moviemultiverse.util.startFadeOut
 import dagger.hilt.android.AndroidEntryPoint
@@ -38,9 +39,21 @@ class MovieDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setupClickListeners()
         setupRecyclerViews()
         getDataFromApi()
         setupObservables()
+    }
+
+    private fun setupClickListeners() {
+        binding.apply {
+            cardBookTickets.setOnClickListener {
+                it.shortSnackbar("Clicked on Book Ticket")
+            }
+            errorLayout.btnRetry.setOnClickListener {
+                getDataFromApi()
+            }
+        }
     }
 
 
@@ -225,9 +238,6 @@ class MovieDetailsFragment : Fragment() {
             root.startFadeIn()
             root.visibility = View.VISIBLE
             tvMessage.text = message
-            btnRetry.setOnClickListener {
-                getDataFromApi()
-            }
         }
     }
 

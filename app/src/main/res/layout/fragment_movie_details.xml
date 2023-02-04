@@ -35,24 +35,22 @@
                     android:maxLines="2"
                     android:padding="2dp"
                     android:paddingVertical="4dp"
-                    android:textFontWeight="500"
+                    app:fontFamily="@font/poppins_bold"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/backdropCard"
                     tools:text="Dr. Strange Multiverse Of Madness" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/backdropCard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
-
                     android:layout_marginTop="16dp"
                     app:cardCornerRadius="12dp"
                     app:layout_constraintDimensionRatio="16:9"
                     app:layout_constraintEnd_toEndOf="@+id/tvTitle"
                     app:layout_constraintStart_toStartOf="@+id/tvTitle"
-                    app:layout_constraintTop_toBottomOf="@+id/tvTitle">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <androidx.appcompat.widget.AppCompatImageView
                         android:id="@+id/ivBackdrop"
@@ -65,15 +63,14 @@
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/ivStar"
-                    android:layout_width="wrap_content"
+                    android:layout_width="22dp"
                     android:layout_height="0dp"
                     android:layout_marginTop="8dp"
-                    android:minWidth="20dp"
                     android:padding="2dp"
                     app:layout_constraintDimensionRatio="1"
                     app:layout_constraintStart_toStartOf="@+id/backdropCard"
-                    app:layout_constraintTop_toBottomOf="@+id/backdropCard"
-                    app:srcCompat="@drawable/ic_star_filled" />
+                    app:layout_constraintTop_toBottomOf="@+id/tvTitle"
+                    app:srcCompat="@drawable/ic_rating" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvRating"
@@ -83,6 +80,7 @@
                     android:maxLines="1"
                     android:padding="2dp"
                     android:textSize="16sp"
+                    app:fontFamily="@font/poppins"
                     app:layout_constraintBottom_toBottomOf="@+id/ivStar"
                     app:layout_constraintStart_toEndOf="@+id/ivStar"
                     app:layout_constraintTop_toTopOf="@+id/ivStar"
@@ -95,6 +93,7 @@
                     android:layout_marginTop="4dp"
                     android:textSize="12sp"
                     app:chipCornerRadius="8dp"
+                    app:fontFamily="@font/poppins"
                     app:layout_constraintStart_toStartOf="@+id/ivStar"
                     app:layout_constraintTop_toBottomOf="@+id/ivStar"
                     tools:text="Action, Thriller +1" />
@@ -106,6 +105,7 @@
                     android:layout_marginStart="8dp"
                     android:textSize="12sp"
                     app:chipCornerRadius="8dp"
+                    app:fontFamily="@font/poppins"
                     app:layout_constraintBottom_toBottomOf="@+id/chipGenres"
                     app:layout_constraintStart_toEndOf="@+id/chipGenres"
                     app:layout_constraintTop_toTopOf="@+id/chipGenres"
@@ -116,6 +116,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
+                    app:fontFamily="@font/poppins"
                     app:layout_constraintEnd_toEndOf="@+id/backdropCard"
                     app:layout_constraintStart_toStartOf="@+id/chipGenres"
                     app:layout_constraintTop_toBottomOf="@+id/chipGenres"
@@ -138,8 +139,8 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/cast"
                     android:textColor="@color/text_color"
-                    android:textFontWeight="700"
                     android:textSize="18sp"
+                    app:fontFamily="@font/poppins_bold"
                     app:layout_constraintStart_toStartOf="@+id/tvOverview"
                     app:layout_constraintTop_toBottomOf="@+id/separatorLine1" />
 
@@ -185,8 +186,8 @@
                     android:layout_marginTop="8dp"
                     android:text="@string/crew"
                     android:textColor="@color/text_color"
-                    android:textFontWeight="700"
                     android:textSize="18sp"
+                    app:fontFamily="@font/poppins_bold"
                     app:layout_constraintStart_toStartOf="@+id/rvCastListWrapper"
                     app:layout_constraintTop_toBottomOf="@+id/separatorLine2" />
 
@@ -247,7 +248,8 @@
                 android:text="@string/book_tickets"
                 android:textAllCaps="false"
                 android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:textSize="18sp"
+                app:fontFamily="@font/poppins" />
         </androidx.cardview.widget.CardView>
 
     </RelativeLayout>

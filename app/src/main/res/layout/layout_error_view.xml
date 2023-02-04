@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
@@ -16,6 +17,7 @@
         android:maxEms="15"
         android:maxLines="2"
         android:textSize="20sp"
+        app:fontFamily="@font/poppins"
         tools:text="Something Went Wrong" />
 
     <com.google.android.material.button.MaterialButton
@@ -25,5 +27,6 @@
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:text="@string/retry"
-        android:textAllCaps="false" />
+        android:textAllCaps="false"
+        app:fontFamily="@font/poppins" />
 </androidx.appcompat.widget.LinearLayoutCompat>

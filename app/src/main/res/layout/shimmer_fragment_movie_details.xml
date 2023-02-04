@@ -25,38 +25,36 @@
                     android:id="@+id/titleShimmer"
                     android:layout_width="0dp"
                     android:layout_height="45dp"
-                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
-                    android:layout_marginEnd="16dp"
                     android:background="@color/grey"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    app:layout_constraintEnd_toEndOf="@+id/shimmerCard"
+                    app:layout_constraintStart_toStartOf="@+id/shimmerCard"
+                    app:layout_constraintTop_toBottomOf="@+id/shimmerCard" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/shimmerCard"
                     android:layout_width="0dp"
                     android:layout_height="0dp"
+                    android:layout_marginStart="16dp"
                     android:layout_marginTop="16dp"
+                    android:layout_marginEnd="16dp"
                     app:cardBackgroundColor="@color/grey"
                     app:cardCornerRadius="12dp"
                     app:layout_constraintDimensionRatio="16:9"
-                    app:layout_constraintEnd_toEndOf="@+id/titleShimmer"
-                    app:layout_constraintStart_toStartOf="@+id/titleShimmer"
-                    app:layout_constraintTop_toBottomOf="@+id/titleShimmer" />
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <androidx.appcompat.widget.AppCompatImageView
                     android:id="@+id/starShimmer"
-                    android:layout_width="wrap_content"
-                    android:layout_height="0dp"
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
                     android:layout_marginTop="8dp"
-                    android:minWidth="20dp"
                     android:padding="2dp"
                     app:layout_constraintDimensionRatio="1"
-                    app:layout_constraintStart_toStartOf="@+id/shimmerCard"
-                    app:layout_constraintTop_toBottomOf="@+id/shimmerCard"
-                    app:srcCompat="@drawable/ic_star_filled" />
+                    app:layout_constraintStart_toStartOf="@+id/titleShimmer"
+                    app:layout_constraintTop_toBottomOf="@+id/titleShimmer"
+                    app:srcCompat="@drawable/ic_rating" />
 
                 <androidx.appcompat.widget.AppCompatTextView
                     android:id="@+id/tvRating"
