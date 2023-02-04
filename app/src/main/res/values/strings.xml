@@ -3,4 +3,5 @@
     <string name="book_tickets">Book Tickets</string>
     <string name="crew">Crew</string>
     <string name="cast">Cast</string>
+    <string name="retry">Retry</string>
 </resources>
