@@ -2,9 +2,14 @@ package com.mrwhoknows.moviemultiverse.ui.details
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.text.SpannableString
+import android.text.Spanned
+import android.text.method.LinkMovementMethod
+import android.text.style.ClickableSpan
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -21,6 +26,9 @@ import com.mrwhoknows.moviemultiverse.util.startFadeIn
 import com.mrwhoknows.moviemultiverse.util.startFadeOut
 import dagger.hilt.android.AndroidEntryPoint
 import timber.log.Timber
+import java.text.SimpleDateFormat
+import java.util.*
+
 
 @AndroidEntryPoint
 class MovieDetailsFragment : Fragment() {
@@ -155,9 +163,45 @@ class MovieDetailsFragment : Fragment() {
 //            placeholder() todo add animated shimmer and failure
             scale(Scale.FILL)
         }
-        tvOverview.text = movieDetails.overview
-        chipGenres.text = movieDetails.genres.joinToString(separator = ", ")
-        chipLanguages.text = movieDetails.languages.joinToString(separator = ", ")
+        tvReleaseDate.text = "Released on: ${getFormattedDate(movieDetails.releaseDate)}"
+        tvOverview.setExpandableText(movieDetails.overview, 150)
+        chipGenres.text = getFormattedListText(movieDetails.genres)
+        chipLanguages.text = getFormattedListText(movieDetails.languages)
+    }
+
+    private fun getFormattedListText(languages: List<String>, limit: Int = 2): String =
+        if (languages.size > limit) {
+            languages.take(limit)
+                .joinToString(separator = ", ") + " +${(languages.size - limit)} more"
+        } else {
+            languages.joinToString(separator = ", ")
+        }
+
+    private fun getFormattedDate(dateString: String): String {
+        val inputDateFormat = SimpleDateFormat("yyyy-MM-dd", Locale.getDefault())
+        return inputDateFormat.parse(dateString)?.run {
+            val outputDateFormat = SimpleDateFormat("dd MMM, yyyy", Locale.getDefault())
+            val formattedDate = outputDateFormat.format(this)
+            formattedDate
+        } ?: kotlin.run {
+            dateString
+        }
+    }
+
+    private fun TextView.setExpandableText(overview: String, limit: Int) {
+        if (overview.length > 150) {
+            val span = object : ClickableSpan() {
+                override fun onClick(view: View) {
+                    text = overview
+                }
+            }
+            text = SpannableString(overview.take(limit) + " more").apply {
+                setSpan(span, (limit + 1), length, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+            }
+            movementMethod = LinkMovementMethod.getInstance()
+        } else {
+            text = overview
+        }
     }
 
     private fun updateLoadingUI(isLoading: Boolean) {
