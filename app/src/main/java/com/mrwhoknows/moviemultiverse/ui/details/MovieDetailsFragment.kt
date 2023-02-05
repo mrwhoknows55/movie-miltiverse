@@ -49,7 +49,6 @@ class MovieDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         setupClickListeners()
         setupRecyclerViews()
-        getDataFromApi()
         setupObservables()
     }
 
@@ -59,16 +58,9 @@ class MovieDetailsFragment : Fragment() {
                 it.shortSnackbar("Clicked on Book Ticket")
             }
             errorLayout.btnRetry.setOnClickListener {
-                getDataFromApi()
+                viewModel.retry()
             }
         }
-    }
-
-
-    private fun getDataFromApi() = viewModel.run {
-        getMovieDetails(453395)
-        getMovieCredits(453395)
-        Unit
     }
 
     private fun setupObservables() {

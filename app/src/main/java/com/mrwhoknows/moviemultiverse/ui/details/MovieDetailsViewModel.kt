@@ -10,10 +10,8 @@ import com.mrwhoknows.moviemultiverse.net.dto.toCreditsModel
 import com.mrwhoknows.moviemultiverse.net.repo.MovieRepository
 import com.mrwhoknows.moviemultiverse.util.Resource
 import dagger.hilt.android.lifecycle.HiltViewModel
-import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import timber.log.Timber
-import java.io.IOException
 import javax.inject.Inject
 
 @HiltViewModel
@@ -30,10 +28,14 @@ class MovieDetailsViewModel
     private val _crewList = MutableLiveData<Resource<List<Credits>>>()
     val crewList: LiveData<Resource<List<Credits>>> = _crewList
 
-    fun getMovieDetails(id: Int) = viewModelScope.launch {
+    init {
+        getDataFromApi()
+    }
+
+    private fun getMovieDetails(id: Int) = viewModelScope.launch {
         _movieDetails.postValue(Resource.Loading())
         try {
-            moviesRepository.getMovieDetails(id).let {  movie ->
+            moviesRepository.getMovieDetails(id).let { movie ->
                 _movieDetails.postValue(Resource.Success(movie))
                 Timber.d("getMovieDetails: $movie")
             }
@@ -43,7 +45,7 @@ class MovieDetailsViewModel
         }
     }
 
-    fun getMovieCredits(id: Int) = viewModelScope.launch {
+    private fun getMovieCredits(id: Int) = viewModelScope.launch {
         _castList.postValue(Resource.Loading())
         _crewList.postValue(Resource.Loading())
         try {
@@ -61,4 +63,13 @@ class MovieDetailsViewModel
             _crewList.postValue(Resource.Error(exception.localizedMessage))
         }
     }
+
+    // todo: shouldn't be hardcoded
+    private fun getDataFromApi(id: Int = 453395) {
+        getMovieDetails(id)
+        getMovieCredits(id)
+    }
+
+    // todo: shouldn't be hardcoded
+    fun retry(id: Int = 453395) = getDataFromApi(id)
 }
